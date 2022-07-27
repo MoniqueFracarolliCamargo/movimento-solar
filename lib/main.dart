@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:movimento_solar/ceu.dart';
-import 'package:movimento_solar/estrelas.dart';
-import 'package:movimento_solar/nuvens.dart';
-import 'package:movimento_solar/passaros.dart';
-import 'package:movimento_solar/sol.dart';
+import 'package:movimento_solar/controller.dart';
 
 void main() => runApp(const MyApp());
 
@@ -12,7 +8,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const duracao = Duration(seconds: 6);
     return MaterialApp(
       title: 'Movimento Solar',
       theme: ThemeData(
@@ -23,15 +18,28 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
         body: Stack(
           children: const [
-            Ceu(
+            MyHomePage(
+              duracao: Duration(seconds: 6),
               corInicial: Color(0xff0c1445),
               corFinal: Color(0xff76d7ea),
-              duracao: duracao,
             ),
-            Estrelas(duracao: duracao, nEstrelas: 88),
-            Sol(duracao: duracao),
-            Passaros(duracao: duracao),
-            Nuvens(duracao: duracao, nNuvens: 6),
+            MyHomePage(
+                duracao: Duration(seconds: 1),
+                numeroObjetos: 88,
+                cor: Colors.white),
+            MyHomePage(
+                duracao: Duration(seconds: 1),
+                alturaObjeto: 128,
+                numeroObjetos: 6,
+                cor: Color(0xffcccccc)),
+            MyHomePage(
+                duracao: Duration(seconds: 1),
+                alturaObjeto: 86,
+                numeroObjetos: 8),
+            MyHomePage(
+                duracao: Duration(seconds: 1),
+                corInicial: Color(0xffe65100),
+                corFinal: Colors.yellow),
           ],
         ),
       ),
